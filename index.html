@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -78,29 +77,57 @@ nav a {
   font-weight: bold;
   letter-spacing: 2px;
 }
-section { padding: 65px 6%; }
-h2 { font-size: 38px; letter-spacing: -1px; }
-.subtitle { color: #657168; line-height: 1.7; }
-.menu {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+section { padding: 45px 6%; }
+h2 { font-size: 38px; letter-spacing: -1px; margin-bottom: 10px; }
+.subtitle { color: #657168; line-height: 1.7; margin-bottom: 25px; }
+
+/* Zomato Style Horizontal Scroll Categories */
+.category-title {
+  font-size: 24px;
+  color: var(--green);
+  margin: 35px 0 15px 0;
+  border-left: 4px solid var(--orange);
+  padding-left: 10px;
 }
+
+.menu-scroll-container {
+  display: flex;
+  overflow-x: auto;
+  gap: 20px;
+  padding-bottom: 15px;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Hide scrollbar for a clean look */
+.menu-scroll-container::-webkit-scrollbar {
+  height: 6px;
+}
+.menu-scroll-container::-webkit-scrollbar-thumb {
+  background: #d4c5b9;
+  border-radius: 10px;
+}
+
 .card {
+  flex: 0 0 280px;
   background: white;
-  padding: 25px;
+  padding: 22px;
   border: 1px solid #eee8dc;
   border-radius: 24px;
   transition: .25s;
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 .card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 15px 35px #173b2b18;
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px #173b2b18;
 }
-.card .emoji { font-size: 42px; }
-.card h3 { font-size: 22px; }
-.price { color: #e95d36; font-size: 25px; font-weight: bold; }
-.card p { color: #657168; line-height: 1.7; min-height: 60px; }
+.card .emoji { font-size: 38px; }
+.card h3 { font-size: 20px; margin: 10px 0 5px 0; }
+.price { color: #e95d36; font-size: 22px; font-weight: bold; }
+.card p { color: #657168; font-size: 14px; line-height: 1.6; min-height: 40px; }
 .featured { background: var(--green); color: white; }
 .featured p { color: #d2ddd5; }
 .featured .price { color: var(--lime); }
@@ -109,8 +136,10 @@ h2 { font-size: 38px; letter-spacing: -1px; }
   color: #e95d36;
   font-weight: bold;
   text-decoration: none;
+  margin-top: 15px;
 }
 .featured .order { color: var(--lime); }
+
 .special {
   background: #f5e6d5;
   text-align: center;
@@ -140,14 +169,15 @@ footer {
   border-radius: 30px;
   font-weight: bold;
   box-shadow: 0 8px 25px #0002;
+  z-index: 100;
 }
 @media(max-width: 750px) {
   header { flex-wrap: wrap; gap: 15px; }
   nav a { margin-left: 10px; }
   .hero { grid-template-columns: 1fr; padding-top: 25px; }
   .food-art { min-height: 260px; }
-  .menu { grid-template-columns: 1fr; }
-  h2 { font-size: 32px; }
+  h2 { font-size: 30px; }
+  .card { flex: 0 0 250px; }
 }
 </style>
 </head>
@@ -180,55 +210,151 @@ footer {
 
 <section id="menu">
   <h2>Made fresh. Priced fair.</h2>
-  <p class="subtitle">Choose your favourite meal and order directly through WhatsApp.</p>
+  <p class="subtitle">Choose your favourite item and swipe horizontally to explore more dishes.</p>
 
-  <div class="menu">
+  <!-- Category 1: Signature Thalis -->
+  <div class="category-title">🍱 Signature Thalis</div>
+  <div class="menu-scroll-container">
     <article class="card">
-      <div class="emoji">🍲</div>
-      <h3>Normal Thali</h3>
-      <div class="price">₹100</div>
-      <p>Daal fry, seasonal sabzi, rice, 4 tawa rotis and pickle.</p>
-      <a class="order" href="https://wa.me/917889505893?text=I%20want%20Normal%20Thali">ORDER NOW ↗</a>
+      <div>
+        <div class="emoji">🍲</div>
+        <h3>Normal Thali</h3>
+        <div class="price">₹100</div>
+        <p>Daal fry, seasonal sabzi, rice, 4 tawa rotis and pickle.</p>
+      </div>
+      <a class="order" href="https://wa.me/917889505893?text=I%20want%20to%20order%20Normal%20Thali%20(₹100)">ORDER NOW ↗</a>
     </article>
 
     <article class="card featured">
-      <div class="emoji">🍛</div>
-      <h3>Special Thali</h3>
-      <div class="price">₹150</div>
-      <p>Daal, sabzi, paneer, raita, rice, 5 rotis, sweet, salad and pickle.</p>
-      <a class="order" href="https://wa.me/917889505893?text=I%20want%20Special%20Thali">ORDER NOW ↗</a>
+      <div>
+        <div class="emoji">🍛</div>
+        <h3>Special Thali</h3>
+        <div class="price">₹150</div>
+        <p>Daal, sabzi, paneer, raita, rice, 5 rotis, sweet, salad and pickle.</p>
+      </div>
+      <a class="order" href="https://wa.me/917889505893?text=I%20want%20to%20order%20Special%20Thali%20(₹150)">ORDER NOW ↗</a>
     </article>
 
     <article class="card">
-      <div class="emoji">🍽️</div>
-      <h3>Executive Thali</h3>
-      <div class="price">₹175</div>
-      <p>Daal, mix veg, paneer, raita, rice, tandoori and missi rotis, sweet and salad.</p>
-      <a class="order" href="https://wa.me/917889505893?text=I%20want%20Executive%20Thali">ORDER NOW ↗</a>
+      <div>
+        <div class="emoji">🍽️</div>
+        <h3>Executive Thali</h3>
+        <div class="price">₹175</div>
+        <p>Daal, mix veg, paneer, raita, rice, tandoori & missi rotis, sweet and salad.</p>
+      </div>
+      <a class="order" href="https://wa.me/917889505893?text=I%20want%20to%20order%20Executive%20Thali%20(₹175)">ORDER NOW ↗</a>
+    </article>
+  </div>
+
+  <!-- Category 2: Paratha Thalis -->
+  <div class="category-title">🫓 Paratha Specials</div>
+  <div class="menu-scroll-container">
+    <article class="card">
+      <div>
+        <div class="emoji">🫓</div>
+        <h3>Aloo Paratha</h3>
+        <div class="price">₹75</div>
+        <p>Served with butter, curd and pickle.</p>
+      </div>
+      <a class="order" href="https://wa.me/917889505893?text=I%20want%20to%20order%20Aloo%20Paratha%20(₹75)">ORDER NOW ↗</a>
     </article>
 
     <article class="card">
-      <div class="emoji">🫓</div>
-      <h3>Paratha Thalis</h3>
-      <div class="price">₹75–₹120</div>
-      <p>Aloo paratha ₹75, paneer paratha ₹100, mix paratha ₹120.</p>
-      <a class="order" href="https://wa.me/917889505893?text=I%20want%20Paratha%20Thali">ORDER NOW ↗</a>
+      <div>
+        <div class="emoji">🫓</div>
+        <h3>Paneer Paratha</h3>
+        <div class="price">₹100</div>
+        <p>Stuffed with rich paneer filling, butter and curd.</p>
+      </div>
+      <a class="order" href="https://wa.me/917889505893?text=I%20want%20to%20order%20Paneer%20Paratha%20(₹100)">ORDER NOW ↗</a>
     </article>
 
     <article class="card">
-      <div class="emoji">🍝</div>
-      <h3>Quick Bites</h3>
-      <div class="price">From ₹50</div>
-      <p>Maggi ₹50, fried rice ₹85 and pasta ₹85.</p>
-      <a class="order" href="https://wa.me/917889505893?text=I%20want%20Quick%20Bites">ORDER NOW ↗</a>
+      <div>
+        <div class="emoji">🫓</div>
+        <h3>Mix Paratha</h3>
+        <div class="price">₹120</div>
+        <p>Loaded multi-veg stuffing with butter and pickle.</p>
+      </div>
+      <a class="order" href="https://wa.me/917889505893?text=I%20want%20to%20order%20Mix%20Paratha%20(₹120)">ORDER NOW ↗</a>
+    </article>
+  </div>
+
+  <!-- Category 3: Quick Bites -->
+  <div class="category-title">🍝 Quick Bites</div>
+  <div class="menu-scroll-container">
+    <article class="card">
+      <div>
+        <div class="emoji">🍜</div>
+        <h3>Maggi</h3>
+        <div class="price">₹50</div>
+        <p>Hot and spicy classic homestyle Maggi.</p>
+      </div>
+      <a class="order" href="https://wa.me/917889505893?text=I%20want%20to%20order%20Maggi%20(₹50)">ORDER NOW ↗</a>
     </article>
 
     <article class="card">
-      <div class="emoji">🫓</div>
-      <h3>Roti & More</h3>
-      <div class="price">From ₹7</div>
-      <p>Tawa roti ₹7, butter roti ₹10, tandoori roti ₹15 and naan ₹25.</p>
-      <a class="order" href="https://wa.me/917889505893?text=I%20want%20Roti">ORDER NOW ↗</a>
+      <div>
+        <div class="emoji">🍛</div>
+        <h3>Fried Rice</h3>
+        <div class="price">₹85</div>
+        <p>Tossed with fresh veggies and aromatic spices.</p>
+      </div>
+      <a class="order" href="https://wa.me/917889505893?text=I%20want%20to%20order%20Fried%20Rice%20(₹85)">ORDER NOW ↗</a>
+    </article>
+
+    <article class="card">
+      <div>
+        <div class="emoji">🍝</div>
+        <h3>Pasta</h3>
+        <div class="price">₹85</div>
+        <p>Delicious creamy or tangy vegetable pasta.</p>
+      </div>
+      <a class="order" href="https://wa.me/917889505893?text=I%20want%20to%20order%20Pasta%20(₹85)">ORDER NOW ↗</a>
+    </article>
+  </div>
+
+  <!-- Category 4: Roti & Breads -->
+  <div class="category-title">🫓 Roti & Breads</div>
+  <div class="menu-scroll-container">
+    <article class="card">
+      <div>
+        <div class="emoji">🫓</div>
+        <h3>Tawa Roti</h3>
+        <div class="price">₹7</div>
+        <p>Fresh whole wheat soft phulkas.</p>
+      </div>
+      <a class="order" href="https://wa.me/917889505893?text=I%20want%20to%20order%20Tawa%20Roti%20(₹7)">ORDER NOW ↗</a>
+    </article>
+
+    <article class="card">
+      <div>
+        <div class="emoji">🫓</div>
+        <h3>Butter Roti</h3>
+        <div class="price">₹10</div>
+        <p>Soft wheat roti brushed with fresh butter.</p>
+      </div>
+      <a class="order" href="https://wa.me/917889505893?text=I%20want%20to%20order%20Butter%20Roti%20(₹10)">ORDER NOW ↗</a>
+    </article>
+
+    <article class="card">
+      <div>
+        <div class="emoji">🫓</div>
+        <h3>Tandoori Roti</h3>
+        <div class="price">₹15</div>
+        <p>Traditional clay oven baked roti.</p>
+      </div>
+      <a class="order" href="https://wa.me/917889505893?text=I%20want%20to%20order%20Tandoori%20Roti%20(₹15)">ORDER NOW ↗</a>
+    </article>
+
+    <article class="card">
+      <div>
+        <div class="emoji">🫓</div>
+        <h3>Naan</h3>
+        <div class="price">₹25</div>
+        <p>Soft and fluffy restaurant-style naan.</p>
+      </div>
+      <a class="order" href="https://wa.me/917889505893?text=I%20value%20Naan%20(₹25)">ORDER NOW ↗</a>
     </article>
   </div>
 </section>
